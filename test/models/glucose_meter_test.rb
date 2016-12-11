@@ -6,6 +6,7 @@ class GlucoseMeterTest < ActiveSupport::TestCase
   end
 
   def teardown
+    User.destroy_all
     GlucoseMeter.destroy_all
   end
 
@@ -26,9 +27,6 @@ class GlucoseMeterTest < ActiveSupport::TestCase
     assert_raises ActiveRecord::RecordInvalid do
       GlucoseMeter.create!(user_id: 1)
     end
-  end
-
-  def test_check_methods
   end
 
 end
