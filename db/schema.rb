@@ -11,7 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161211101954) do
+ActiveRecord::Schema.define(version: 20161211114631) do
+
+  create_table "glucose_meters", force: :cascade do |t|
+    t.float    "level",      limit: 24
+    t.integer  "user_id",    limit: 4
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
+
+  add_index "glucose_meters", ["user_id"], name: "index_glucose_meters_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false

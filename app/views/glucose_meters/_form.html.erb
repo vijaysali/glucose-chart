@@ -1,0 +1,25 @@
+<%= form_for(@glucose_meter) do |f| %>
+  <% if @glucose_meter.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@glucose_meter.errors.count, "error") %> prohibited this glucose_meter from being saved:</h2>
+
+      <ul>
+      <% @glucose_meter.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :level %><br>
+    <%= f.text_field :level %>
+  </div>
+  <div class="field">
+    <%= f.label :references %><br>
+    <%= f.text_field :references %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

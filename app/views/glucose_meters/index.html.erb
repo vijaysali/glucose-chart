@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Glucose Meters</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Level</th>
+      <th>References</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @glucose_meters.each do |glucose_meter| %>
+      <tr>
+        <td><%= glucose_meter.level %></td>
+        <td><%= glucose_meter.references %></td>
+        <td><%= link_to 'Show', glucose_meter %></td>
+        <td><%= link_to 'Edit', edit_glucose_meter_path(glucose_meter) %></td>
+        <td><%= link_to 'Destroy', glucose_meter, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Glucose meter', new_glucose_meter_path %>

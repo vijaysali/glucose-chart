@@ -1,0 +1,1 @@
+json.partial! "glucose_meters/glucose_meter", glucose_meter: @glucose_meter
