@@ -43,6 +43,7 @@ class UserTest < ActiveSupport::TestCase
 
     user.add_glucose_meter_data(2.5)
     assert_equal 1, user.glucose_meters.count
+    assert_equal 1, user.todays_report.count
   end
 
 
@@ -53,6 +54,7 @@ class UserTest < ActiveSupport::TestCase
       user.add_glucose_meter_data(2.5)
       assert_equal x, user.glucose_meters.count
     end
+    assert_equal 4, user.todays_report.count
   end
 
   test "add_data_perday_raise_exception" do
@@ -62,8 +64,36 @@ class UserTest < ActiveSupport::TestCase
       user.add_glucose_meter_data(2.5)
       assert_equal x, user.glucose_meters.count
     end
+
+    assert_raises StandardError  do
+      user.add_glucose_meter_data(10.5)
+    end
+    assert_equal 4, user.todays_report.count
+  end
+
+  test "enter_input_check_correctness" do
+    user = User.create!(@user_hash)
+    assert_equal [], user.glucose_meters
+    1.upto(4).each do |x|
+      user.add_glucose_meter_data(2.5)
+      assert_equal x, user.glucose_meters.count
+    end
+
+    # set created_at date to previous day
+    user.glucose_meters.update_all(created_at: DateTime.now - 20.days)
+
+    assert_equal 0, user.todays_report.count
+
+    1.upto(4).each do |x|
+      user.add_glucose_meter_data(2.5)
+      assert_equal x, user.todays_report.count
+    end
+    assert_equal 4, user.todays_report.count
+    assert_equal 8, user.last_month_report.count
+
     assert_raises StandardError  do
       user.add_glucose_meter_data(10.5)
     end
   end
+
 end
