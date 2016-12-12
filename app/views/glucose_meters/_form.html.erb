@@ -5,7 +5,7 @@
 
       <ul>
       <% @glucose_meter.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+      <li><%= message %></li>
       <% end %>
       </ul>
     </div>
@@ -14,10 +14,7 @@
   <div class="field">
     <%= f.label :level %><br>
     <%= f.text_field :level %>
-  </div>
-  <div class="field">
-    <%= f.label :references %><br>
-    <%= f.text_field :references %>
+    <%= f.hidden_field :user_id, :value => current_user.id%>
   </div>
   <div class="actions">
     <%= f.submit %>
