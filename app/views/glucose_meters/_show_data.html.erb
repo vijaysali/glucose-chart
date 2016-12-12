@@ -1,0 +1,16 @@
+<% if @data.size > 1 %>
+<table>
+  <tr>
+    <th>Level</th>
+    <th>DateTime</th>
+  </tr>
+  <% @data.each do |row| %>
+  <tr>
+    <td><%= row.try(:level) %></td>
+    <td><%= row.try(:created_at) %></td>
+  </tr>
+  <% end %>
+</table>
+<% else %>
+<p> No data to show </p>
+<% end %>
