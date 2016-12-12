@@ -36,4 +36,34 @@ class UserTest < ActiveSupport::TestCase
     user = User.create!(@user_hash)
     assert_equal [], user.glucose_meters
   end
+
+  test "add_glucose_level_data" do
+    user = User.create!(@user_hash)
+    assert_equal [], user.glucose_meters
+
+    user.add_glucose_meter_data(2.5)
+    assert_equal 1, user.glucose_meters.count
+  end
+
+
+  test "add_glucose_level_data_perday" do
+    user = User.create!(@user_hash)
+    assert_equal [], user.glucose_meters
+    1.upto(4).each do |x|
+      user.add_glucose_meter_data(2.5)
+      assert_equal x, user.glucose_meters.count
+    end
+  end
+
+  test "add_data_perday_raise_exception" do
+    user = User.create!(@user_hash)
+    assert_equal [], user.glucose_meters
+    1.upto(4).each do |x|
+      user.add_glucose_meter_data(2.5)
+      assert_equal x, user.glucose_meters.count
+    end
+    assert_raises StandardError  do
+      user.add_glucose_meter_data(10.5)
+    end
+  end
 end

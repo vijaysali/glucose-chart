@@ -21,4 +21,11 @@ class User < ActiveRecord::Base
     self.glucose_meters.custom_date(start_date, end_date)
   end
 
+  def add_glucose_meter_data(level)
+    if self.todays_report.count >= 4
+      raise StandardError.new, "Cannot add more inputs. Limit exceeded."
+    end
+    self.glucose_meters << GlucoseMeter.new(level: level)
+  end
+
 end
