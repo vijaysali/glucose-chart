@@ -4,6 +4,9 @@ Rails.application.routes.draw do
     get 'todays'
     get 'last_month'
     get 'custom_range'
+    collection do
+      get 'display_custom_range'
+    end
   end
   root 'glucose_meters#new'
 

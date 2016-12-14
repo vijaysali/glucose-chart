@@ -1,5 +1,5 @@
 class GlucoseMetersController < ApplicationController
-  before_action :set_user, only: [:todays, :last_month, :custom_range]
+  before_action :set_user, only: [:todays, :last_month, :custom_range, :display_custom_range]
 
   def todays
     @data = @user.todays_report
@@ -10,6 +10,15 @@ class GlucoseMetersController < ApplicationController
   end
 
   def custom_range
+
+  end
+
+  def display_custom_range
+    start_date_params = params[:range]["st(1i)"] + "-" + params[:range]["st(2i)"] + "-" + params[:range]["st(3i)"] + " 00:00:00"
+    end_date_params   = params[:range]["ed(1i)"] + "-" + params[:range]["ed(2i)"] + "-" + params[:range]["ed(3i)"] + " 23:59:59"
+
+    p [start_date_params, end_date_params]
+    @data = @user.glucose_meters.custom_date(DateTime.parse(start_date_params), DateTime.parse(end_date_params))
   end
 
   def index
@@ -46,7 +55,6 @@ class GlucoseMetersController < ApplicationController
   end
 
   def set_user
-    p params
     @user = User.find_by_id(params[:glucose_meter_id])
   end
 end
