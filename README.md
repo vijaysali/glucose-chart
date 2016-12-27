@@ -1,26 +1,20 @@
-== README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
+# GLUCOSE APP
+Ruby on Rails sample application that demonstrates simple form to accept input from user stores relvant information.
+Displays data based on date range. This uses devise gem for user authentication.
 
 * Ruby version (ruby 2.1.8 and rails 4.2.5)
 
 * System dependencies
-    Ububntu 14.04
-    mysql
-
-* Configuration
+    * Ububntu 14.04
+    * mysql
 
 * Database creation
-   rake db:create
-   rake db:migrate
+   * rake db:create
+   * rake db:migrate
 
-* Database initialization
 
 * How to run the test suite
-   rake test test/models/*
+   * rake test test/models/*
 
 * TODO
    - [x] rails app
