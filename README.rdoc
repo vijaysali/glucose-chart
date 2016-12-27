@@ -27,7 +27,5 @@ Things you may want to cover:
    - [x] table structure
    - [x] create form
    - [x] units tests for models
-   - [] controller tests
-   - [] bootstrap
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+   - [ ]  controller tests
+   - [ ] bootstrap
